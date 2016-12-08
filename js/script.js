@@ -40,12 +40,38 @@ $(function() {
 });
 */
 
-var line = '';
-var linescount = 0;
-var elem = $(".command_line");
-var linesc;
-
 $(function() {
+
+	var line = '';
+	var linescount = 0;
+	var elem = $(".command_line");
+	//var linesc;
+	var linesc = $(".lines_container");	
+
+	function check_command() {
+
+		var old_html = linesc.html();
+		var output = '<br>';
+
+		if (line == 'help') {
+			output += 'commands available: help, cls';
+		} else if (line == 'cls') {
+			old_html = '';
+			line = '';
+			output = '';
+		} else if (line == 'get') {
+			output += "command 'get' will download a webpage, usage: 'get url'";
+		} else {
+			output = '';
+		}
+
+
+
+		if (old_html + line + output) output += '<br>';
+
+		linesc.html(old_html + line + output);
+
+	}
 
 	$(document).keydown(function(event){
 		if(event.which == 8 && line) {
@@ -59,21 +85,21 @@ $(function() {
 
 		if (event.which == 13) {
 
-			if (line){
+			if (line) {
 
-				if ($('.lines_container').length == 0) {
+				/*if ($('.lines_container').length == 0) {
 					$('.console_wrapper').prepend('<div class="lines_container"></div>');
 					linesc = $(".lines_container");
-				}
+				}*/
 
-				elem.text(line);
-				linesc.html(linesc.html() + line + '<br>');
+				check_command();
+
+				//linesc.html(linesc.html() + line + '<br>');
 				elem.text('');
-				line = '';
-			} else {
-				line = '';
+
 			}
 
+			line = '';
 			$('.command_tick').css('margin-left', '-8px');
 
 		} else {
