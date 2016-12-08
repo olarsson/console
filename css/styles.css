@@ -1,0 +1,76 @@
+html {
+  height: 100%;
+  font-size: 0.8em; }
+
+body {
+  color: #000;
+  background-color: #fff;
+  height: 100%;
+  font-family: "Source Code Pro", monospace; }
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  width: auto; }
+
+a {
+  color: #636363;
+  text-decoration: none;
+  border-bottom: 1px solid #A5A5A5; }
+
+a:hover {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 2px solid #000; }
+
+.wrapper {
+  max-width: 940px;
+  margin: 50px auto;
+  display: block; }
+
+#result {
+  padding: 20px;
+  border: 1px solid #000; }
+
+#load_url {
+  padding: 5px 20px 5px 20px;
+  margin-bottom: 10px; }
+
+.console_wrapper {
+  position: relative;
+  background-color: #000;
+  max-width: 940px;
+  min-height: 600px;
+  margin: 100px auto;
+  border-radius: 10px;
+  border: 20px solid #ddd;
+  color: #ddd;
+  font-weight: 300;
+  padding: 15px; }
+
+.lines_container {
+  background-color: transparent; }
+
+.command_line {
+  display: inline-block; }
+
+.command_tick {
+  display: inline-block;
+  margin-left: -8px;
+  width: 10px;
+  height: 14px;
+  vertical-align: sub;
+  background-color: #a94442;
+  animation-duration: 0.5s;
+  animation-name: tickit;
+  animation-iteration-count: infinite; }
+
+@keyframes tickit {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+/*# sourceMappingURL=styles.css.map */
