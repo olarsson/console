@@ -221,7 +221,7 @@ $(function() {
 		ajax.onreadystatechange = ajax_handler;
 		ajax.timeout = 10000;
 
-		url = "http://mardby.se/AJK15G/lorem_text.php";
+		//url = "http://mardby.se/AJK15G/lorem_text.php";
 		//url = "httgp://www.google.se";
 		//url = "http://www.google.se";
 		ajax.open("GET", url);
