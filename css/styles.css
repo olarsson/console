@@ -4,9 +4,11 @@ html {
 
 body {
   color: #000;
+  cursor: default;
   background-color: #fff;
   height: 100%;
-  font-family: "Source Code Pro", monospace; }
+  font-family: "Source Code Pro", monospace;
+  line-height: 1.5em; }
 
 img {
   display: block;
@@ -16,27 +18,20 @@ img {
   width: auto; }
 
 a {
-  color: #636363;
+  color: #a94442;
   text-decoration: none;
-  border-bottom: 1px solid #A5A5A5; }
+  border-bottom: 1px solid #a94442; }
 
 a:hover {
-  color: #000;
+  color: #fff;
   text-decoration: none;
-  border-bottom: 2px solid #000; }
+  border-bottom: 2px solid #fff; }
 
-.wrapper {
-  max-width: 940px;
-  margin: 50px auto;
-  display: block; }
+::selection {
+  background: #000; }
 
-#result {
-  padding: 20px;
-  border: 1px solid #000; }
-
-#load_url {
-  padding: 5px 20px 5px 20px;
-  margin-bottom: 10px; }
+::-moz-selection {
+  background: #000; }
 
 .console_wrapper {
   position: relative;
@@ -66,6 +61,10 @@ a:hover {
   animation-duration: 0.5s;
   animation-name: tickit;
   animation-iteration-count: infinite; }
+
+.blurry-text {
+  color: rgba(255, 255, 255, 0);
+  text-shadow: 0 0 1px white; }
 
 @keyframes tickit {
   0% {
