@@ -161,11 +161,11 @@ $(document).keydown(function(e){
 	if(e.which == 8 && line) {
 		line = line.slice(0, -1);
 		print_to_command_line(line);
-		return false;
 	} else if(e.which == 38 || e.which == 40) {
 		show_next_prev_command(e.which);
 		return false;
 	}
+	if(e.which == 8) return false;	
 });	
 
 $(document).keypress(function(e){
