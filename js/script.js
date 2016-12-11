@@ -17,6 +17,7 @@ commands.push({command: 'author', ext: false});
 commands.push({command: 'cls', ext: false});
 commands.push({command: 'get', ext: true});
 commands.push({command: 'drunk', ext: false});
+commands.push({command: 'annoyobot', ext: false});
 
 for (var i in commands) commands_str.push([commands[i].command]);
 
@@ -81,7 +82,7 @@ $(function() {
 					ajax_get_url(command_ext);
 
 				} else {
-					output += "Command 'get' will download a webpage, usage: 'get url'";
+					output += "Command 'get' will download a local webpage, usage: 'get page', Example: 'get /'";
 				}			
 				break;
 
@@ -92,19 +93,45 @@ $(function() {
 				if (mode == 0) {
 					clearTimeout(timeuntilnext);
 					$('.console_wrapper').removeClass('blurry-text');
+					$('.command_tick').removeClass('blurry-bg');
 					output += "Drunk mode disabled.";
 				} else {
 					drunk_next_input(true);
 					$('.console_wrapper').addClass('blurry-text');
+					$('.command_tick').addClass('blurry-bg');
 					output += "Drunk mode enabled. Yippie! Party time! (type it again to disable)";
 				}
 
 				break;
 
+			case 'annoyobot':
+
+				if ($('#mongo-container').css('display') == 'none') {
+					$('#mongo-container').css('display', 'block');
+				} else {
+					$('#mongo-container').css('display', 'none');
+				}
+
 		}
 
 
 		if (print_yes) print_it(old_html,line,output);
+
+	}
+
+	function create_mongo() {
+
+		var div = '';
+	
+		div += "<div id=\"mongo-container\">";
+		div += "	<div id=\"mongo-center\"></div>";
+		div += "	<div class=\"leg lleft\">";
+		div += "		<div class=\"foot\"></div>";
+		div += "	</div>";
+		div += "	<div class=\"leg lright\">";
+		div += "		<div class=\"foot\"></div>";
+		div += "	</div>";
+		div += "</div>";
 
 	}
 
@@ -116,7 +143,6 @@ $(function() {
 		}
 
 		timeuntilnext = get_rnd_num_between(2,7);
-		console.log(timeuntilnext);
 		timeuntilnext = setTimeout(drunk_next_input, (timeuntilnext * 1000));
 	}
 
@@ -203,10 +229,10 @@ $(function() {
 
 			if (resp.length < 4) {
 				out += 'Request failed.<br>';
-				console.log(out);
 			}
 
 			enable_input = true;
+
 			print_it(linesc.html(),out,'');
 
 		}
