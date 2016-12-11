@@ -17,6 +17,13 @@ img {
   margin: 0 auto;
   width: auto; }
 
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word; }
+
 a {
   color: #a94442;
   text-decoration: none;
@@ -36,14 +43,17 @@ a:hover {
 .console_wrapper {
   position: relative;
   background-color: #000;
-  max-width: 940px;
-  min-height: 600px;
+  max-width: 840px;
+  min-height: 500px;
   margin: 100px auto;
   border-radius: 10px;
   border: 20px solid #ddd;
   color: #ddd;
   font-weight: 300;
-  padding: 15px; }
+  padding: 15px;
+  -webkit-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2); }
 
 .wobble_anim {
   animation-name: wobble;
@@ -52,14 +62,18 @@ a:hover {
   animation-direction: alternate; }
 
 .lines_container {
-  background-color: transparent; }
+  background-color: transparent;
+  max-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end; }
 
 .command_line {
   display: inline-block; }
 
 .command_tick {
   display: inline-block;
-  margin-left: -8px;
+  margin-left: 0px;
   width: 10px;
   height: 14px;
   vertical-align: sub;

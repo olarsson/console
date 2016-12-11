@@ -4,6 +4,8 @@ var ajax = new XMLHttpRequest();
 var resp = [];
 var commands = [];
 var commands_str = [];
+var previous_commands = [];
+var previous_command_pos = 0;
 var line = '';
 var linescount = 0;
 var enable_input = true;
@@ -11,6 +13,7 @@ var elem = $(".command_line");
 var linesc = $(".lines_container");
 var mode = 0; //0 = normal, 1 = drunkmode
 var timeuntilnext;
+var tick_classes;
 
 /*
 		dir
@@ -80,17 +83,15 @@ function check_command() {
 
 			if (mode == 0) {
 				clearTimeout(timeuntilnext);
+				tick_classes = '';
 				$('.console_wrapper').removeClass('blurry-text');
-				$('.command_tick').removeClass('blurry-bg');
-				$('.lines_container, .command_line_container, .command_line, .command_tick').removeClass('wobble_anim');
-
+				$('.lines_container, .command_line_container, .command_line').removeClass('wobble_anim');
 				output += "Drunk mode disabled.";
 			} else {
 				drunk_next_input(true);
+				tick_classes = 'wobble_anim blurry-bg';
 				$('.console_wrapper').addClass('blurry-text');
-				$('.command_tick').addClass('blurry-bg');
-				$('.lines_container, .command_line_container, .command_line, .command_tick').addClass('wobble_anim');
-
+				$('.lines_container, .command_line_container, .command_line').addClass('wobble_anim');
 				output += "Drunk mode enabled. Yippie! Party time! (type it again to disable)";
 			}
 			break;
@@ -140,29 +141,47 @@ function print_it(scope_old_html,scope_line,scope_output) {
 }
 
 function print_to_command_line(str) {
-	elem.html('<pre>'+str+'</pre>');
-	(line.length == 0) ? $('.command_tick').css('margin-left', '-8px') : $('.command_tick').css('margin-left', '-5px');
+	elem.html('<pre>'+str+'<div class="command_tick '+tick_classes+'"></div></pre>');
+	(line.length == 0) ? $('.command_tick').css('margin-left', '0px') : $('.command_tick').css('margin-left', '3px');
 }
 
-$(document).keydown(function(event){
+function show_next_prev_command(k) {
+	if (k == 40) previous_command_pos++;
+	if (k == 38) previous_command_pos--;
+	if (previous_command_pos > previous_commands.length - 1) previous_command_pos = 0;
+	if (previous_command_pos < 0) previous_command_pos = previous_commands.length - 1;
+	if (previous_commands.length > 0) {
+		line = previous_commands[previous_command_pos];
+		print_to_command_line(line);
+	}
+}
+
+$(document).keydown(function(e){
 	if (!enable_input) return false;
-	if(event.which == 8 && line) {
+	if(e.which == 8 && line) {
 		line = line.slice(0, -1);
 		print_to_command_line(line);
+	} else if(e.which == 38 || e.which == 40) {
+		show_next_prev_command(e.which);
+		return false;
 	}
 });	
 
-$(document).keypress(function(event){
+$(document).keypress(function(e){
 	if (!enable_input) return false;
-	if (event.which == 13) {
-		if (line) check_command();
+	if (e.which == 13) {
+		if (line.trim().length == 0) line = '';
+		if (line){
+			if ($.inArray(line, previous_commands) == -1) previous_commands.push(line);
+			check_command();
+		}
 		line = '';
 	} else {
-		line += String.fromCharCode(event.which);
+		line += String.fromCharCode(e.which);
 		if (mode == 1 && get_rnd_num_between(0, 4) == 4)	line += Math.random().toString(36).substring(2,3);
 	}
 	print_to_command_line(line);
-	if (event.which == 32) { return false; }
+	if (e.which == 32) return false;
 });
 
 function ajax_errorhandler(xhr, status, error) {
