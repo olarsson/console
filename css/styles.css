@@ -1,3 +1,10 @@
+/* green */
+/*$blinkcolor: #44bd15 */
+/*$consolecolor: #44bd15 */
+/*$rgb_shadow: 0px 0px 5px 2px rgba(68,189,21,0.2) */
+/*$rgb_blurcolor: rgb(68,189,21) */
+/*$rgb_blurcolor_shadow: #4cff07 */
+/* gray */
 html {
   height: 100%;
   font-size: 0.8em; }
@@ -5,10 +12,10 @@ html {
 body {
   color: #000;
   cursor: default;
-  background-color: #fff;
+  background-color: #ccc;
   height: 100%;
   font-family: "Source Code Pro", monospace;
-  line-height: 1.5em; }
+  line-height: 1.2em; }
 
 img {
   display: block;
@@ -25,9 +32,9 @@ pre {
   word-wrap: break-word; }
 
 a {
-  color: #a94442;
+  color: #ddd;
   text-decoration: none;
-  border-bottom: 1px solid #a94442; }
+  border-bottom: 1px solid #ddd; }
 
 a:hover {
   color: #fff;
@@ -42,7 +49,7 @@ a:hover {
 
 .console_wrapper {
   position: relative;
-  background-color: #000;
+  background-color: #393a3c;
   max-width: 840px;
   min-height: 500px;
   margin: 100px auto;
@@ -50,10 +57,15 @@ a:hover {
   border: 20px solid #ddd;
   color: #ddd;
   font-weight: 300;
-  padding: 15px;
-  -webkit-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2); }
+  padding: 15px; }
+
+#console_stripes {
+  margin: -15px;
+  opacity: 0.1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg, #ffffff, transparent 1px, transparent 2px, #5a5a5a 4px); }
 
 .wobble_anim {
   animation-name: wobble;
@@ -77,24 +89,25 @@ a:hover {
   width: 10px;
   height: 14px;
   vertical-align: sub;
-  background-color: #a94442;
+  background-color: #ddd;
   animation-duration: 0.5s;
   animation-name: tickit;
   animation-iteration-count: infinite; }
 
 .blurry-text {
-  color: rgba(255, 255, 255, 0);
-  text-shadow: 0 0 1px white; }
+  color: #ddd;
+  text-shadow: 0 0 4px #fff; }
 
 .blurry-bg {
-  -webkit-box-shadow: 0px 0px 5px 2px #a94442;
-  -moz-box-shadow: 0px 0px 5px 2px #a94442;
-  box-shadow: 0px 0px 5px 2px #a94442; }
+  -webkit-box-shadow: 0px 0px 5px 2px #ddd;
+  -moz-box-shadow: 0px 0px 5px 2px #ddd;
+  box-shadow: 0px 0px 5px 2px #ddd; }
 
 #mongo-container {
   display: none;
   position: relative;
   width: 32px;
+  animation-timing-function: linear;
   animation-name: leftoright;
   animation-duration: 3s;
   animation-iteration-count: infinite;

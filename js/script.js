@@ -59,7 +59,7 @@ function check_command() {
 			break;
 
 		case 'author':
-			output += 'Created by Olof Larsson, 2016: <a href="http://www.olof.it" target="_olof">www.olof.it</a>';
+			output += 'Created by Olof Larsson, 2016, www.olof.it';
 			break;
 
 		case 'cls':
