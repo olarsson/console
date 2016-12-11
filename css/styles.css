@@ -45,6 +45,12 @@ a:hover {
   font-weight: 300;
   padding: 15px; }
 
+.wobble_anim {
+  animation-name: wobble;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; }
+
 .lines_container {
   background-color: transparent; }
 
@@ -139,5 +145,10 @@ a:hover {
     left: 0%; }
   100% {
     left: 30%; } }
+@keyframes wobble {
+  0% {
+    transform: rotate(-1deg); }
+  100% {
+    transform: rotate(1deg); } }
 
 /*# sourceMappingURL=styles.css.map */
